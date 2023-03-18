@@ -2,7 +2,7 @@
   "name": "team-concert",
   "version": "0.0.1",
   "description": "Easy standup to allow participants to speak one at a time.",
-  "main": "src/index.ts",
+  "main": "index.js",
   "scripts": {
     "start": "nodemon src/index.ts",
     "build": "rimraf dist && tsc",
