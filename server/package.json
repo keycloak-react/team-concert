@@ -1,0 +1,26 @@
+{
+  "name": "team-concert",
+  "version": "0.0.1",
+  "description": "Easy standup to allow participants to speak one at a time.",
+  "main": "index.ts",
+  "scripts": {
+    "start": "nodemon",
+    "test": "jest"
+  },
+  "keywords": [
+    "team",
+    "concert"
+  ],
+  "author": "Raubin Kumar",
+  "license": "MIT",
+  "dependencies": {
+    "http": "^0.0.1-security",
+    "socket.io": "^4.6.1"
+  },
+  "devDependencies": {
+    "jest": "^29.5.0",
+    "nodemon": "^2.0.21",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.2"
+  }
+}
