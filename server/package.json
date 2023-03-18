@@ -2,9 +2,9 @@
   "name": "team-concert",
   "version": "0.0.1",
   "description": "Easy standup to allow participants to speak one at a time.",
-  "main": "index.ts",
+  "main": "src/index.ts",
   "scripts": {
-    "start": "nodemon index.ts",
+    "start": "nodemon src/index.ts",
     "build": "rimraf dist && tsc",
     "ts.check": "tsc --project tsconfig.json",
     "add-build": "git add dist",
