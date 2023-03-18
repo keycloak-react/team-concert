@@ -109,7 +109,7 @@ function Concert(props: IConcertProps) {
           );
         })}
       </div>
-      <div style={styles.footer}>PCN Team Concert 1.0</div>
+      {/* <div style={styles.footer}>PCN Team Concert 1.0</div> */}
     </div>
   );
 }
