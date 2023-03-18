@@ -2,8 +2,15 @@ import { DefaultEventsMap } from "socket.io/dist/typed-events";
 import { createServer } from "http";
 import { RemoteSocket, Server } from "socket.io";
 import { getRoomId, getUserName } from "./helpers";
+const express = require("express");
+const app = express();
 
-const httpServer = createServer();
+const httpServer = createServer(app);
+
+app.get("/", (req, res) => {
+  res.send("Working");
+});
+
 const io = new Server(httpServer, {
   // options
   path: "/connect/",
