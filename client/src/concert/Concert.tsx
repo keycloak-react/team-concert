@@ -29,6 +29,17 @@ const styles: { [key: string]: React.CSSProperties } = {
     justifyContent: "space-between",
     color: "white",
   },
+  footer: {
+    display: "flex",
+    alignItems: "center",
+    height: 32,
+    background: "#3f3f3f",
+    justifyContent: "center",
+    color: "white",
+    position: "absolute",
+    bottom: 0,
+    width: "100%",
+  },
   btn: {
     padding: "5px 10px",
     borderRadius: 5,
@@ -47,7 +58,6 @@ function Concert(props: IConcertProps) {
       "updated-connected-users",
       socket,
       (data: { connectedUsers: IUser[] }) => {
-        console.log(data.connectedUsers);
         setConnectedClients(data.connectedUsers || []);
       }
     );
@@ -55,7 +65,7 @@ function Concert(props: IConcertProps) {
     subscribe("user-with-ball", socket, (data: { userWithBall: string }) => {
       setUserWithBall(data.userWithBall);
     });
-
+    socket.emit("get-connected-users");
     socket.emit("user-with-ball");
   }, [socket]);
 
@@ -72,7 +82,13 @@ function Concert(props: IConcertProps) {
   return (
     <div className="App">
       <div style={styles.header}>
-        <h1>PCN Team Concert</h1>
+        <h1>
+          <img
+            style={{ width: 50, aspectRatio: "1/1" }}
+            alt="Team concert logo"
+            src="./spotlight.png"
+          ></img>
+        </h1>
         {!userWithBall && (
           <button style={styles.btn} onClick={grabBall}>
             Grab the Ball
@@ -91,6 +107,7 @@ function Concert(props: IConcertProps) {
           );
         })}
       </div>
+      <div style={styles.footer}>PCN Team Concert 1.0</div>
     </div>
   );
 }

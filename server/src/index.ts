@@ -49,7 +49,6 @@ io.on("connection", async (socket) => {
     }
     await socket.leave(roomId);
     const allClients = await getAllClients(roomId);
-    console.log("CLIENTS", allClients.length);
     io.to(roomId).emit("updated-connected-users", {
       connectedUsers: getAllConnectedUsers(allClients),
     });
@@ -58,6 +57,13 @@ io.on("connection", async (socket) => {
   socket.on("user-with-ball", () => {
     io.to(roomId).emit("user-with-ball", {
       userWithBall: roomBallVsUser[roomId] || null,
+    });
+  });
+
+  socket.on("get-connected-users", async () => {
+    const allClients = await getAllClients(roomId);
+    io.to(roomId).emit("updated-connected-users", {
+      connectedUsers: getAllConnectedUsers(allClients),
     });
   });
 
