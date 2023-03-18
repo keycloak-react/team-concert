@@ -15,6 +15,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     width: "35%",
     maxWidth: 200,
     maxHeight: 250,
+    minWidth: 150,
     aspectRatio: "1/1.25",
     position: "relative",
     border: "2px solid gray",
