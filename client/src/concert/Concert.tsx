@@ -20,6 +20,8 @@ const styles: { [key: string]: React.CSSProperties } = {
     gap: 5,
     flexWrap: "wrap",
     justifyContent: "space-evenly",
+    overflow: "auto",
+    height: "calc(100vh - 180px)",
   },
   header: {
     display: "flex",
