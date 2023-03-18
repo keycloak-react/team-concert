@@ -16,17 +16,20 @@ const styles: { [key: string]: React.CSSProperties } = {
     alignItems: "center",
     gap: 10,
     padding: 32,
-    width: 400,
+    maxWidth: 400,
+    width: "100%",
     border: "2px solid gray",
   },
   label: {
-    width: 400,
+    width: "100%",
     fontSize: "smaller",
+    alignSelf: "flex-start",
   },
   input: {
-    width: 380,
+    width: "100%",
     padding: 10,
     marginBottom: 16,
+    boxSizing: "border-box",
   },
   btn: {
     padding: "5px 10px",

@@ -18,6 +18,8 @@ const styles: { [key: string]: React.CSSProperties } = {
     padding: 16,
     display: "flex",
     gap: 5,
+    flexWrap: "wrap",
+    justifyContent: "space-evenly",
   },
   header: {
     display: "flex",
