@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { io, Socket } from "socket.io-client";
 
-const SOCKET_BASE_URL = "http://localhost:8000";
+const SOCKET_BASE_URL = "https://team-concert-server.onrender.com";
 
 let _socket: Socket;
 
