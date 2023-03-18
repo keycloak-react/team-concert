@@ -34,8 +34,8 @@ const styles: { [key: string]: React.CSSProperties } = {
     fontWeight: "bold",
   },
   ball: {
-    width: 50,
-    height: 50,
+    width: "25%",
+    aspectRatio: "1/1",
     borderRadius: "50%",
     border: "2px solid lightgray",
     position: "absolute",
