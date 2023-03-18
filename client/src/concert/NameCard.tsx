@@ -22,6 +22,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     padding: 10,
     borderRadius: 10,
     cursor: "pointer",
+    justifyContent: "center",
   },
   avatar: {
     width: "100%",

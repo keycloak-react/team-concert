@@ -84,13 +84,14 @@ function Concert(props: IConcertProps) {
   return (
     <div className="App">
       <div style={styles.header}>
-        <h1>
+        <div style={{ display: "flex", fontWeight: "bold" }}>
           <img
             style={{ width: 50, aspectRatio: "1/1" }}
             alt="Team concert logo"
             src="./spotlight.png"
           ></img>
-        </h1>
+          <p>PCN Team Concert</p>
+        </div>
         {!userWithBall && (
           <button style={styles.btn} onClick={grabBall}>
             Grab the Ball
