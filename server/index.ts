@@ -7,7 +7,7 @@ const app = express();
 
 const httpServer = createServer(app);
 
-app.get("/", (req, res) => {
+app.get("/", (_req: any, res: any) => {
   res.send("Working");
 });
 
@@ -27,8 +27,8 @@ const getAllConnectedUsers = (
   return clients.map((item) => ({ name: getUserName(item), id: item.id }));
 };
 
-const roomBallVsUser: { [key: string]: string } = {};
-const updateRoomBall = (room: string, id: string) => {
+const roomBallVsUser: { [key: string]: string | null } = {};
+const updateRoomBall = (room: string, id: string | null) => {
   roomBallVsUser[room] = id || null;
 };
 
