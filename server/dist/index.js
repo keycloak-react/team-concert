@@ -50,7 +50,6 @@ io.on("connection", (socket) => __awaiter(void 0, void 0, void 0, function* () {
         }
         yield socket.leave(roomId);
         const allClients = yield getAllClients(roomId);
-        console.log("CLIENTS", allClients.length);
         io.to(roomId).emit("updated-connected-users", {
             connectedUsers: getAllConnectedUsers(allClients),
         });
@@ -60,6 +59,12 @@ io.on("connection", (socket) => __awaiter(void 0, void 0, void 0, function* () {
             userWithBall: roomBallVsUser[roomId] || null,
         });
     });
+    socket.on("get-connected-users", () => __awaiter(void 0, void 0, void 0, function* () {
+        const allClients = yield getAllClients(roomId);
+        io.to(roomId).emit("updated-connected-users", {
+            connectedUsers: getAllConnectedUsers(allClients),
+        });
+    }));
     socket.on("pass", ({ to }) => __awaiter(void 0, void 0, void 0, function* () {
         if (hasBall(roomId, socket.id)) {
             updateRoomBall(roomId, to);
