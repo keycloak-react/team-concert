@@ -27,7 +27,11 @@ const getAllClients = (roomId) => __awaiter(void 0, void 0, void 0, function* ()
     return connectedClients;
 });
 const getAllConnectedUsers = (clients) => {
-    return clients.map((item) => ({ name: (0, helpers_1.getUserName)(item), id: item.id }));
+    return clients.map((item) => ({
+        name: (0, helpers_1.getUserName)(item),
+        id: item.id,
+        userId: (0, helpers_1.getUserId)(item),
+    }));
 };
 const roomBallVsUser = {};
 const updateRoomBall = (room, id) => {
@@ -44,7 +48,7 @@ io.on("connection", (socket) => __awaiter(void 0, void 0, void 0, function* () {
     const userName = (0, helpers_1.getRoomId)(socket);
     socket.join(roomId);
     socket.on("disconnect", () => __awaiter(void 0, void 0, void 0, function* () {
-        if (hasBall(roomId, socket.id)) {
+        if (hasBall(roomId, (0, helpers_1.getUserId)(socket))) {
             updateRoomBall(roomId, null);
             io.to(roomId).emit("user-with-ball", { userWithBall: null });
         }
@@ -66,7 +70,7 @@ io.on("connection", (socket) => __awaiter(void 0, void 0, void 0, function* () {
         });
     }));
     socket.on("pass", ({ to }) => __awaiter(void 0, void 0, void 0, function* () {
-        if (hasBall(roomId, socket.id)) {
+        if (hasBall(roomId, (0, helpers_1.getUserId)(socket))) {
             updateRoomBall(roomId, to);
             io.to(roomId).emit("user-with-ball", { userWithBall: to });
         }

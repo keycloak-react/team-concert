@@ -11,6 +11,7 @@ interface IConcertProps {
 interface IUser {
   name: string;
   id: string;
+  userId: string;
 }
 
 const styles: { [key: string]: React.CSSProperties } = {
@@ -102,10 +103,10 @@ function Concert(props: IConcertProps) {
         {connectedClients.map((item) => {
           return (
             <NameCard
-              passBall={() => passBall(item.id)}
+              passBall={() => passBall(item.userId)}
               key={item.id}
               name={item.name}
-              hasBall={item.id === userWithBall}
+              hasBall={item.userId === userWithBall}
             />
           );
         })}

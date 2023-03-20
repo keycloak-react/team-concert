@@ -7,6 +7,7 @@ const SOCKET_BASE_URL = "https://team-concert-server.onrender.com";
 let _socket: Socket;
 
 function createSocket(url: string, room: string, name: string) {
+  const id = crypto.randomUUID();
   if (_socket) return _socket;
   _socket = io(url, {
     transports: ["websocket", "polling"],
@@ -14,6 +15,7 @@ function createSocket(url: string, room: string, name: string) {
     query: {
       roomId: room,
       user: name,
+      userId: `${name}__${id}`,
     },
   });
 

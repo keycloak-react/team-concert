@@ -1,7 +1,7 @@
 import { DefaultEventsMap } from "socket.io/dist/typed-events";
 import { createServer } from "http";
 import { RemoteSocket, Server } from "socket.io";
-import { getRoomId, getUserName } from "./helpers";
+import { getRoomId, getUserId, getUserName } from "./helpers";
 const express = require("express");
 const app = express();
 
@@ -24,7 +24,11 @@ const getAllClients = async (roomId: string) => {
 const getAllConnectedUsers = (
   clients: RemoteSocket<DefaultEventsMap, any>[]
 ) => {
-  return clients.map((item) => ({ name: getUserName(item), id: item.id }));
+  return clients.map((item) => ({
+    name: getUserName(item),
+    id: item.id,
+    userId: getUserId(item),
+  }));
 };
 
 const roomBallVsUser: { [key: string]: string | null } = {};
@@ -43,7 +47,7 @@ io.on("connection", async (socket) => {
   const userName = getRoomId(socket);
   socket.join(roomId);
   socket.on("disconnect", async () => {
-    if (hasBall(roomId, socket.id)) {
+    if (hasBall(roomId, getUserId(socket))) {
       updateRoomBall(roomId, null);
       io.to(roomId).emit("user-with-ball", { userWithBall: null });
     }
@@ -68,7 +72,7 @@ io.on("connection", async (socket) => {
   });
 
   socket.on("pass", async ({ to }: { to: string }) => {
-    if (hasBall(roomId, socket.id)) {
+    if (hasBall(roomId, getUserId(socket))) {
       updateRoomBall(roomId, to);
       io.to(roomId).emit("user-with-ball", { userWithBall: to });
     }
